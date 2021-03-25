@@ -18,7 +18,7 @@ const getErrorMsg = (errCode) => {
       errorMsg = "잘못된 아이디나 패스워드입니다.";
       break;
     default:
-      errorMsg = "잠시 후 다시 시도해주시기랍니다.";
+      errorMsg = "잠시 후 다시 시도해주시기바랍니다.";
       break;
   }
   return errorMsg;
@@ -60,19 +60,9 @@ class Signin extends React.Component {
     return (
       <CenterLayout>
         <div className={style.Signin}>
-          <DefaultUserInfoInputGroup
-            onChangeId={this.onChangeId}
-            onChangePw={this.onChangePw}
-            id={id}
-            pw={pw}
-          />
+          <DefaultUserInfoInputGroup onChangeId={this.onChangeId} onChangePw={this.onChangePw} id={id} pw={pw} />
           {errorMsg && <FormText>{errorMsg}</FormText>}
-          <AccountButtonGroup
-            buttonLabel="로그인"
-            onClickButton={this.signIn}
-            linkLabel="회원가입"
-            linkTo="/signup"
-          />
+          <AccountButtonGroup buttonLabel="로그인" onClickButton={this.signIn} linkLabel="회원가입" linkTo="/signup" />
         </div>
       </CenterLayout>
     );
