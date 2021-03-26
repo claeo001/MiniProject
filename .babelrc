@@ -1,12 +1,13 @@
 {
-	"presets": ["@babel/preset-env", "@babel/preset-react"],
-	"plugins": [
-		"@babel/plugin-proposal-object-rest-spread",
-		"@babel/plugin-proposal-class-properties",
-	],
-	"env": {
-		"test": {
-			"ignore": ["app.js", "modules/**", "routes/**", "models/**", "service/**"]
-		}
-	}
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "plugins": [
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-transform-runtime"
+  ],
+  "env": {
+    "test": {
+      "ignore": ["app.js", "modules/**", "routes/**", "models/**", "service/**"]
+    }
+  }
 }
