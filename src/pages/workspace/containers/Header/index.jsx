@@ -1,44 +1,38 @@
-import React from 'react';
-import { DropdownToggle, UncontrolledDropdown, DropdownMenu, DropdownItem } from 'reactstrap';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { NavItem, NavLink, DropdownToggle, UncontrolledDropdown, DropdownMenu, DropdownItem } from "reactstrap";
+import axios from "axios";
 
-import style from './style.scss';
+import style from "./style.scss";
 
-class Header extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			userId: ''
-		};
-	}
+const Header = (props) => {
+  const [userId, setUserId] = useState("");
 
-	componentDidMount() {
-		axios.get('/api/account/id').then(({ data }) => {
-			this.setState({
-				userId: data
-			});
-		});
-	}
+  useEffect(() => {
+    const fetchUserId = async () => {
+      const { data } = await axios.get("/api/account/id");
+      setUserId(data);
+    };
+    fetchUserId();
+  }, []);
 
-	signOut = () => {
-		window.location.href = '/api/account/signout';
-	};
+  const signOut = () => {
+    window.location.href = "/api/account/signout";
+  };
 
-	render() {
-		const { userId } = this.state;
-		return (
-			<div className={style.Header}>
-				<UncontrolledDropdown>
-					<DropdownToggle caret tag="a" className={style.Header__dropdown}>
-						{userId}
-					</DropdownToggle>
-					<DropdownMenu right>
-						<DropdownItem onClick={this.signOut}>로그아웃</DropdownItem>
-					</DropdownMenu>
-				</UncontrolledDropdown>
-			</div>
-		);
-	}
-}
+  return (
+    <div className={style.Header}>
+      <UncontrolledDropdown>
+        <DropdownToggle caret tag="a" className={style.Header__dropdown}>
+          {userId}
+        </DropdownToggle>
+        <DropdownMenu right>
+          <DropdownItem onClick={() => props.setView("file")}>파일매니저</DropdownItem>
+          <DropdownItem onClick={() => props.setView("chatting")}>채팅</DropdownItem>
+          <DropdownItem onClick={signOut}>로그아웃</DropdownItem>
+        </DropdownMenu>
+      </UncontrolledDropdown>
+    </div>
+  );
+};
 
 export default Header;
