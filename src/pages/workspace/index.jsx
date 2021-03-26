@@ -13,7 +13,14 @@ const Workspace = () => {
   return (
     <div>
       <Header setView={setView} />
-      <div>{renderView(view)}</div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        {renderView(view)}
+      </div>
     </div>
   );
 };
