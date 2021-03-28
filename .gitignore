@@ -178,3 +178,5 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,node,react,git
 node_modules
+
+dist/
