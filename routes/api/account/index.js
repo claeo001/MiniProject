@@ -2,10 +2,6 @@ const router = require("express").Router();
 const modAccount = require("../../../models/account");
 const util = require("./util");
 const Error = require("../util/error");
-const statusCode = require("../../../middlewares/util/statusCode");
-const responseMessage = require("../../../middlewares/util/responseMessage");
-const authUtil = require("../../../middlewares/util/authUtil");
-const jwt = require("../../../middlewares/jwt");
 
 const findById = async (id) => {
   const accountInfo = await modAccount.findOne({ id });
@@ -68,7 +64,7 @@ router.post("/signin", async (req, res, next) => {
     const { id, pw } = req.body;
     const ret = await isExistsAccountInfo(id, pw);
     req.session.user = { id };
-    res.status(200).send(token);
+    res.status(200).send(ret);
   } catch (err) {
     next(err);
   }
